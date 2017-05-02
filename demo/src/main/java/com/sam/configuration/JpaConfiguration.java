@@ -56,6 +56,9 @@ public class JpaConfiguration {
 	 */
 	@Bean
 	public DataSource dataSource() {
+
+		//to run on local h2 database
+
 //		DataSourceProperties dataSourceProperties = dataSourceProperties();
 //			HikariDataSource dataSource = (HikariDataSource) DataSourceBuilder
 //					.create(dataSourceProperties.getClassLoader())
@@ -67,12 +70,14 @@ public class JpaConfiguration {
 //					.build();
 //			dataSource.setMaximumPoolSize(maxPoolSize);
 
+		// to run on prod DB
+
 		DataSourceProperties dataSourceProperties = dataSourceProperties();
 		HikariDataSource dataSource = (HikariDataSource) DataSourceBuilder
 				.create(dataSourceProperties.getClassLoader())
 				.driverClassName("com.mysql.jdbc.Driver")
-				.url("jdbc:mysql://40.71.253.62:3306/dummy")
-				.username("user")
+				.url("jdbc:mysql://13.65.214.53:3306/dummy")
+				.username("user1")
 				.password("password")
 				.type(HikariDataSource.class)
 				.build();
@@ -106,6 +111,9 @@ public class JpaConfiguration {
 	 * Here you can specify any provider specific properties.
 	 */
 	private Properties jpaProperties() {
+
+		//to run on local h2
+
 //		Properties properties = new Properties();
 //		properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 //		properties.put("hibernate.hbm2ddl.auto", "create-drop");
@@ -114,6 +122,8 @@ public class JpaConfiguration {
 ////		if(StringUtils.isNotEmpty(environment.getRequiredProperty("datasource.sampleapp.defaultSchema"))){
 ////			properties.put("hibernate.default_schema", environment.getRequiredProperty("datasource.sampleapp.defaultSchema"));
 ////		}
+
+		//to run on prod DB
 
 		Properties properties = new Properties();
 
